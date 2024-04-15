@@ -2,10 +2,12 @@
 
 set -e
 
-export AWS_ACCOUNT_ID=288509344804
-export AWS_REGION=eu-north-1
+# Required inputs
 export AWS_PROFILE="${1}"
 export CF_TOKEN="${2}"
+
+export AWS_ACCOUNT_ID=288509344804
+export AWS_REGION=eu-north-1
 
 export AWS_CONFIG_FILE="${HOME}/.aws/config_${AWS_PROFILE}"
 export AWS_SHARED_CREDENTIALS_FILE="${HOME}/.aws/credentials_${AWS_PROFILE}"
