@@ -6,7 +6,7 @@ Mainly it is designed to be managed by administrators, DevOps engineers, SREs.
 * [Requirements](#requirements)
 * [Git flow strategy](#git-flow-strategy)
 * [Additional information](#additional-information)
-* [Emergency cluster removal](#emergency-cluster-removal)
+* [Emergency cluster destroy](#emergency-cluster-destroy)
 * [Development](#development)
 
 ## Requirements:
@@ -26,8 +26,8 @@ RMK also keeps track of which version of the release of terraform manifests the 
 The version of terraform manifests artifact is described in the version file of each 
 tenant repository in the section `inventory.clusters`.
 
-## Emergency cluster removal
-Script for emergency removal of a tenant's cluster in the case when native terraform tools fail to do this.
+## Emergency cluster destroy
+Script for emergency destroy of a tenant's cluster in the case when native terraform tools fail to do this.
 
 ### Requirements:
 * AWS CLI >= 2.9
@@ -36,7 +36,7 @@ Script for emergency removal of a tenant's cluster in the case when native terra
 * yq >= v4.35.2
 
 ```shell
-cd cluster-removal
+cd emergency-cluster-destroy
 ./emergency-cluster-removal.sh <AWS profile name> <Cloudflare token>
 ```
 
