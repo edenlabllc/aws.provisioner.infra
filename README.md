@@ -37,7 +37,7 @@ Script for emergency destroy of a tenant's cluster in the case when native terra
 
 ```shell
 cd emergency-cluster-destroy
-./emergency-cluster-removal.sh <AWS profile name> <Cloudflare token>
+./emergency-cluster-destroy.sh <AWS profile name> <Cloudflare token>
 ```
 
 > Note: Follow the script's interactive instructions for correct execution.
