@@ -6,6 +6,7 @@ Mainly it is designed to be managed by administrators, DevOps engineers, SREs.
 * [Requirements](#requirements)
 * [Git flow strategy](#git-flow-strategy)
 * [Additional information](#additional-information)
+* [Emergency cluster removal](#emergency-cluster-removal)
 * [Development](#development)
 
 ## Requirements:
@@ -18,13 +19,28 @@ This repository uses the [GitFlow](https://www.atlassian.com/git/tutorials/compa
 Each merge in the master branch adds a new SemVer2 tag and a GitHub release is created.
 
 ## Additional information
-* This set of terraform manifests only works with the AWS provider at the moment.
-* This set of terraform manifests can only be launched from the tenant repository via the RMK, 
+This set of terraform manifests can only be launched from the tenant repository via the RMK, 
 because the entire input set of variables is formed by the RMK at the moment 
 the commands are launched: `rmk cluster provision` or `rmk cluster destroy`.
 RMK also keeps track of which version of the release of terraform manifests the tenant repository will use.
 The version of terraform manifests artifact is described in the version file of each 
 tenant repository in the section `inventory.clusters`.
+
+## Emergency cluster removal
+Script for emergency removal of a tenant's cluster in the case when native terraform tools fail to do this.
+
+### Requirements:
+* AWS CLI >= 2.9
+* curl
+* aws-nuke >= v2.25.0
+* yq >= v4.35.2
+
+```shell
+cd cluster-removal
+./emergency-cluster-removal.sh <AWS profile name> <Cloudflare token>
+```
+
+> Note: Follow the script's interactive instructions for correct execution.
 
 ## Development
 For development, you need to use one of the tenant repositories and change the code 

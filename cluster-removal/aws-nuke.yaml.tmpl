@@ -1,0 +1,163 @@
+---
+regions:
+- global
+- ${AWS_REGION}
+
+account-blocklist:
+- 1234567890
+
+# optional: restrict nuking to these resources
+resource-types:
+  excludes:
+    - EC2Snapshot
+    - ECRRepository
+    - S3Bucket
+    - S3Object
+  targets:
+    - ACMCertificate
+    - AutoScalingGroup
+    - DynamoDBTableItem
+    - EC2Address
+    - EC2InternetGateway
+    - EC2InternetGatewayAttachment
+    - EC2KeyPair
+    - EC2NATGateway
+    - EC2RouteTable
+    - EC2SecurityGroup
+    - EC2Subnet
+    - EC2VPC
+    - EC2Volume
+    - EKSCluster
+    - ELBv2
+    - ELBv2TargetGroup
+    - IAMGroup
+    - IAMGroupPolicyAttachment
+    - IAMInstanceProfile
+    - IAMInstanceProfileRole
+    - IAMOpenIDConnectProvider
+    - IAMPolicy
+    - IAMRole
+    - IAMRolePolicy
+    - IAMRolePolicyAttachment
+    - LaunchConfiguration
+    - Route53HostedZone
+    - Route53ResourceRecordSet
+
+accounts:
+  ${AWS_ACCOUNT_ID}:
+    filters:
+      ACMCertificate:
+        - property: DomainName
+          value: ^${CLUSTER_NAME}\..+$
+          type: regex
+          invert: true
+      AutoScalingGroup:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      DynamoDBTableItem:
+        - property: KeyValue
+          value: (?i)${CLUSTER_NAME}\b
+          type: regex
+          invert: true
+      EC2Address:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2InternetGateway:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2InternetGatewayAttachment:
+        - property: tag:vpc:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2KeyPair:
+        - property: Name
+          value: ^${CLUSTER_NAME}\-.+$
+          type: regex
+          invert: true
+      EC2NATGateway:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2RouteTable:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2SecurityGroup:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2Subnet:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2VPC:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      EC2Volume:
+        - property: tag:KubernetesCluster
+          value: ${CLUSTER_NAME}
+          invert: true
+      EKSCluster:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      ELBv2:
+        - property: tag:ingress.k8s.aws/stack
+          value: ${CLUSTER_NAME}
+          invert: true
+      ELBv2TargetGroup:
+        - property: tag:ingress.k8s.aws/stack
+          value: ${CLUSTER_NAME}
+          invert: true
+      IAMGroup:
+        - property: Name
+          value: ^${CLUSTER_NAME}\-.+$
+          type: regex
+          invert: true
+      IAMGroupPolicyAttachment:
+        - property: RoleName
+          value: ^${CLUSTER_NAME}\-.+$
+          type: regex
+          invert: true
+      IAMInstanceProfile:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      IAMInstanceProfileRole:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      IAMOpenIDConnectProvider:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      IAMPolicy:
+        - value: (?i)${CLUSTER_NAME}\b
+          type: regex
+          invert: true
+      IAMRole:
+        - property: Name
+          value: ^${CLUSTER_NAME}\-.+$
+          type: regex
+          invert: true
+      IAMRolePolicyAttachment:
+        - property: RoleName
+          value: ^${CLUSTER_NAME}\-.+$
+          type: regex
+          invert: true
+      LaunchConfiguration:
+        - value: ^${CLUSTER_NAME}\-.+$
+          type: regex
+          invert: true
+      Route53HostedZone:
+        - property: tag:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
+      Route53ResourceRecordSet:
+        - property: tag:hz:Environment
+          value: ${CLUSTER_NAME}
+          invert: true
