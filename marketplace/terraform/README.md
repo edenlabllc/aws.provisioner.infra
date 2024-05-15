@@ -1,21 +1,23 @@
 # Kodjin Mini
 
-A set of Terraform manifests for an example of provisioning a `kodjin-mini` instance based on `Kodjin` AMI 
+A set of Terraform manifests with examples of provisioning a `Kodjin Mini` instance based on `Kodjin` AMI 
 from AWS Marketplace.
 
 ### Quick start guide
 
 1. Create `.env` file with AWS credentials:
 ```shell
-export AWS_REGION=<aws region>
-export AWS_ACCESS_KEY_ID=<aws acces key id>
-export AWS_SECRET_ACCESS_KEY=<aws SECRET ACCESS KEY>
+export AWS_REGION=<aws_region>
+export AWS_ACCESS_KEY_ID=<aws_access_key_id>
+export AWS_SECRET_ACCESS_KEY=<aws_secret_access_key>
 export TF_VAR_AWS_REGION="${AWS_REGION}"
 export TF_VAR_AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
 export TF_VAR_AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
 ```
 
-2. Run the command to define environment variables:
+> Note: `TF_VAR_*` variables are used by Terraform.
+
+2. Run the following commands to initialize environment variables:
 ```shell
 set -a; source .env; set +a
 ```
@@ -27,38 +29,39 @@ terraform plan -out kodjin-mini.tfplan
 terraform apply kodjin-mini.tfplan
 ```
 
-4. Now you can request Kodjin API.
+4. Now you can request the `Kodjin` API.
 
-> Note: The default setup will be provided one AWS instance with public access to `Kodjin` API. 
-> In the `variables.tf` file you can change the behavior and create an instance with private network support 
-> via `instance_with_private_network` variable.
+> Note: The default setup will provide one AWS instance with public access to the `Kodjin` API. 
+> In the `variables.tf` file you can change the default behavior and create an instance with private network support 
+> via the `instance_with_private_network` variable.
 
-### Configuration Kodjin Mini
+### Configuration of Kodjin Mini
 
-#### Extend disk space size
+#### Extension of data disk size
 
-By default this configuration example provide one disk for project with `200GB` size. 
-But you can extend size through variable `instance_data_disk_size`.
+By default, this configuration example provide one disk of a `200GB` size for the project. 
+However, you can extend the default size through the `instance_data_disk_size` variable.
 ```terraform
 variable "instance_data_disk_size" {
   default     = 200
-  description = "Specific instance data disk size for project"
+  description = "Instance data disk size for project"
   type        = number
 }
 ```
 
-After change value run `plan` and `apply` Terraform commands:
+After changing the values run `plan` and `apply` Terraform commands:
 ```shell
 terraform plan -out kodjin-mini.tfplan
 terraform apply kodjin-mini.tfplan
 ```
 
 This will only change the disk size of the AWS instance, 
-but in addition you need to change the size of each databases used within the project. 
+but in addition you need to change the size of each database used within the project. 
 To do this, connect via SSH to the instance.
 You will automatically be taken to the project directory. 
 Find the directory according to your environment name: `etc/deps/<develop|staging|production>/values/k3d/values`.
 For the following files, change the size of the `PVC` in proportion to the increase in disk space:
+
 - elastic.yaml
 ```yaml
 esNodeSet:
@@ -99,20 +102,20 @@ master:
     size: 2Gi
 ```
 
-Defining the environment name:
+Get the current environment name:
 ```shell
 git branch
 ```
 
-Apply change:
+Apply the changes:
 ```shell
 ../scripts/project-setup.sh
 ```
 
-#### Setup Kodjin Mini for private network
+#### Setup Kodjin Mini for private networks
 
-By default this configuration example provide only public network and promote public `Kodjin` API. 
-But you can change this trough variable `instance_with_private_network`.
+By default, this configuration example provides only public networks and promotes the `Kodjin` API. 
+However, you can change this via the `instance_with_private_network` variable:
 ```terraform
 variable "instance_with_private_network" {
   default     = false
@@ -121,17 +124,17 @@ variable "instance_with_private_network" {
 }
 ```
 
-After change value run `plan` and `apply` Terraform commands:
+After changing the values run `plan` and `apply` Terraform commands:
 ```shell
 terraform plan -out kodjin-mini.tfplan
 terraform apply kodjin-mini.tfplan
 ```
 
 If you enable support for a private network, then two networks will be created for the AWS instance, 
-one will be as before a public network with access to the instance via the SSH.
-Second a private network with access via the SSH and ingress ports for the `Kodjin` API.
+The first one will be the same as before: a public network with access to the instance via the SSH.
+The second one will be a private network with access via the SSH and ingress ports for the `Kodjin` API.
 You can also change the default ingress ports for the `Kodjin` API,
-if they are already used by other applications in your private network.
+if they are already used by other applications in your private networks.
 ```terraform
 variable "instance_ingress_ports" {
   default = [
@@ -142,14 +145,14 @@ variable "instance_ingress_ports" {
       host_port = 443
     }
   ]
-  description = "Specific instance ingress ports for project"
+  description = "Instance ingress ports for project"
   type = list(object({
     host_port = number
   }))
 }
 ```
 
-### Note
+### Important notes
 
 - Terraform manifests will by default create a private SSH key in the user's home directory.
 ```terraform
@@ -160,8 +163,8 @@ output "ssh_access" {
 
 - This set of Terraform manifests is presented as an example of provisioning
   and installing `Kodjin` using the `Kodjin` AMI. 
-  You can improve or change Terraform manifests at your discretion. 
-  Basic requirements after provisioning the AWS instance, you must run the following set of commands 
+  You can improve or change Terraform manifests to your needs. 
+  The basic requirements after provisioning the AWS instance are that you must run the following set of commands 
   to complete the `Kodjin` installation.
 ```terraform
 provisioner "remote-exec" {
