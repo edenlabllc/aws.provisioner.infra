@@ -88,19 +88,6 @@ persistence:
   storageClass: local-path
   size: 20Gi
 ```
-- postgres.yaml
-```yaml
-volume:
-  size: 2Gi
-  storageClass: local-path
-```
-- redis.yaml
-```yaml
-master:
-  persistence:
-    storageClass: local-path
-    size: 2Gi
-```
 
 Get the current environment name:
 ```shell
