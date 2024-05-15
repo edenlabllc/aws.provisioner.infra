@@ -96,8 +96,7 @@ build {
       "${path.cwd}/.gitignore",
       "${path.cwd}/helmfile.yaml.gotmpl",
       "${path.cwd}/project.yaml",
-      "${path.cwd}/README.md",
-      "${path.cwd}/version.yaml"
+      "${path.cwd}/README.md"
     ]
     destination = "/home/${build.User}/${var.project_name}/"
   }

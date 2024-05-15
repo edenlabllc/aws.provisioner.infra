@@ -5,7 +5,7 @@ set -e
 PROJECT_HOME_DIR="${HOME}/${PROJECT_NAME}"
 cd "${PROJECT_HOME_DIR}"
 
-# Add environment variables for project user
+# Add environment variables for system user
 cat .env.sh | sudo -S tee -a /etc/profile
 
 kill -HUP "$PPID"

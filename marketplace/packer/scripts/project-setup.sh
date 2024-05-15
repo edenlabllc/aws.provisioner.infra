@@ -16,7 +16,7 @@ function add_host_port() {
     done
 
     if ((COUNT_PORT == 0)); then
-      k3d node edit "${LOADBALANCER_NODE_NAME}" --port-add "${1}":"${3}"
+      k3d node edit "${LOAD_BALANCER_NODE_NAME}" --port-add "${1}":"${3}"
     fi
   fi
 }
@@ -25,7 +25,7 @@ function add_host_port() {
 rmk config init
 (rmk cluster k3d create 2> /dev/null) || echo "INFO: skip K3D cluster creating"
 
-LOADBALANCER_NODE_NAME="$(k3d node list --output yaml | yq '.[] | select(.role == "loadbalancer") | .name')"
+LOAD_BALANCER_NODE_NAME="$(k3d node list --output yaml | yq '.[] | select(.role == "loadbalancer") | .name')"
 CURRENT_HOST_PORTS_0="$(k3d node list --output yaml | yq '.[] | select(.role == "loadbalancer") | .portMappings.80/tcp[].HostPort')"
 CURRENT_HOST_PORTS_1="$(k3d node list --output yaml | yq '.[] | select(.role == "loadbalancer") | .portMappings.443/tcp[].HostPort')"
 

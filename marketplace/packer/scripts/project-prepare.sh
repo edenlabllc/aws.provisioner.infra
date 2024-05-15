@@ -18,10 +18,11 @@ git config --global "user.name" "github-actions"
 git config --global "user.email" "github-actions@github.com"
 git config --global init.defaultBranch "${PROJECT_ENVIRONMENT}"
 git init
-git remote add origin git@github.com:edenlabllc/"${PROJECT_NAME}".bootstrap.infra.git
+git remote add origin "git@github.com:edenlabllc/${PROJECT_NAME}.bootstrap.infra.git"
 git add .
 git commit -m "init commit"
 
 # Init RMK config for project
 rmk config init --progress-bar=false --cluster-provider=k3d --artifact-mode=online
-rmk cluster k3d create && rmk cluster k3d delete
+rmk cluster k3d create
+rmk cluster k3d delete
