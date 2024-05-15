@@ -1,4 +1,4 @@
-output "kodjin_API_URL" {
+output "kodjin_api_url" {
   value = "https://${aws_eip.public_eip.public_dns}${var.instance_ingress_ports[1].host_port != 443 ? format(":%s", var.instance_ingress_ports[1].host_port) : ""}/fhir"
 }
 

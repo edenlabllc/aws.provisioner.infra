@@ -7,7 +7,7 @@ cd "${PROJECT_HOME_DIR}"
 
 # Clean project and stop cluster
 rmk release destroy --selector scope=kodjin
-# Needed for finished previously step
+# Needed for finishing the previously step
 sleep 30
 rmk release destroy --selector scope=deps
 rmk cluster k3d stop

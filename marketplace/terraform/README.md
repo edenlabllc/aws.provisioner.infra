@@ -1,6 +1,6 @@
-# kodjin-mini
+# Kodjin Mini
 
-A set of Terraform manifests for an example of provisioning a `kodjin-mini` instance based on `Kodjin` ami-image 
+A set of Terraform manifests for an example of provisioning a `kodjin-mini` instance based on `Kodjin` AMI 
 from AWS Marketplace.
 
 ### Quick start guide
@@ -23,12 +23,14 @@ set -a; source .env; set +a
 3. Run the following Terraform commands while in the directory with a set of manifests:
 ```shell
 terraform init -reconfigure
-terraform plan -out kodjin.tfplan
-terraform apply kodjin.tfplan
+terraform plan -out kodjin-mini.tfplan
+terraform apply kodjin-mini.tfplan
 ```
 
-4. Now you can request API Kodjin.
+4. Now you can request Kodjin API.
 
 > Note: The default setup will be provided one AWS instance with public access to `Kodjin` API. 
 > In the `variables.tf` file you can change the behavior and create an instance with private network support 
 > via `instance_with_private_network` variable.
+
+### Quick start guide

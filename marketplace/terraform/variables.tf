@@ -76,7 +76,7 @@ variable "instance_type" {
 
 variable "instance_with_private_network" {
   default     = false
-  description = "Enabled|Disabled private network"
+  description = "Enable|Disable private network"
   type        = bool
 }
 
@@ -106,6 +106,6 @@ variable "project_version" {
 
 variable "ssh_username" {
   default     = "ec2-user"
-  description = "The user name for access via ssh to instance"
+  description = "The user name for access via SSH to instance"
   type        = string
 }
