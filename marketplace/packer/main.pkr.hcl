@@ -47,7 +47,7 @@ source "amazon-ebs" "source_base_image" {
 
   run_tags = {
     AMIName            = local.ami_image_name
-    Name               = "${var.project_name}-light"
+    Name               = "${var.project_name}-mini"
     ProjectName        = var.project_name
     ProjectEnvironment = var.project_environment
     ProjectVersion     = replace(local.version, "-linux-amd64", "")

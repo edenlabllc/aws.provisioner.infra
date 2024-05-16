@@ -186,7 +186,7 @@ resource "aws_instance" "kodjin" {
     volume_size           = var.instance_data_disk_size
     tags                  = {
       AMIName             = "${var.project_organization}-${var.project_name}-${var.project_version}-linux-amd64"
-      Name                = "${var.project_name}-light"
+      Name                = "${var.project_name}-mini"
       ProjectName         = var.project_name
       ProjectEnvironment  = var.project_environment
       ProjectVersion      = var.project_version
