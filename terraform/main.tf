@@ -68,9 +68,11 @@ locals {
 
 # always create bastion tls_private_key
 resource "tls_private_key" "tls_private_key_bastion" {
+  # TODO: RSA algorithm will be replaced with ED25519 algorithm
   algorithm = "RSA"
 }
 
+# TODO: local_file resource will be replaced with local_sensitive_file resource
 resource "local_file" "local_file_bastion" {
   count = var.bastion_enabled ? 1 : 0
 

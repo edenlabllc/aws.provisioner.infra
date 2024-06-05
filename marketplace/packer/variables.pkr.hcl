@@ -54,7 +54,7 @@ variable "project_env_variables" {
     SMTP_USERNAME                         = "notifications@example.com"
     SMTP_PASSWORD                         = "XXXXXXXXXXXX"
     FIXTURES_GIT_PAT                      = "ghp_XXXXXXXXXXXX"
-    ERROR_MAIL_RECEIVER                   = "fhir-notifications-XXXXXXXXXXXX@example.slack.com"
+    ERROR_MAIL_RECEIVER                   = "notifications-XXXXXXXXXXXX@example.slack.com"
   }
   sensitive = true
   type      = map(string)

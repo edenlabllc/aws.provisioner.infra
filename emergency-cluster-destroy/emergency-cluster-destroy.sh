@@ -6,12 +6,12 @@ set -e
 export AWS_PROFILE="${1}"
 export CF_TOKEN="${2}"
 
-export AWS_ACCOUNT_ID=288509344804
-export AWS_REGION=eu-north-1
-
 export AWS_CONFIG_FILE="${HOME}/.aws/config_${AWS_PROFILE}"
 export AWS_SHARED_CREDENTIALS_FILE="${HOME}/.aws/credentials_${AWS_PROFILE}"
 export CLUSTER_NAME="${AWS_PROFILE}"
+
+export AWS_REGION="$(aws configure get region)"
+export AWS_ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)"
 
 readonly AWS_NUKE_CONFIG_TMPL=aws-nuke.yaml.tmpl
 readonly AWS_NUKE_CONFIG=aws-nuke.yaml

@@ -31,7 +31,7 @@ data "aws_ami" "filter" {
   }
 
   most_recent = true
-  owners      = [var.ami_image_owner]
+  owners      = [var.AMI_IMAGE_OWNER]
 }
 
 resource "tls_private_key" "ed25519" {
