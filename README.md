@@ -32,7 +32,7 @@ Each merge in the master branch adds a new [SemVer2](https://semver.org/) tag an
 ## Additional information
 
 This set of Terraform manifests can only be launched from the project repository via [RMK](https://github.com/edenlabllc/rmk), 
-because the entire input set of variables is formed by the RMK at the moment 
+because the entire input set of variables is formed by RMK at the moment 
 the commands are launched: `rmk cluster provision` or `rmk cluster destroy`.
 RMK also keeps track of which version of the release of Terraform manifests the project repository will use.
 The version of Terraform manifests artifact is described in the [project.yaml](https://github.com/edenlabllc/rmk/blob/develop/docs/configuration/project-management/preparation-of-project-repository.md#projectyaml) file of each 
