@@ -52,17 +52,17 @@ Script for emergency destroy of a project's cluster in the case when native Terr
 
 **Requirements:**
 
-* AWS CLI >= 2.9
-* curl
-* aws-nuke >= v2.25.0
-* yq >= v4.35.2
+* [AWS CLI](https://aws.amazon.com/cli/) >= 2.9
+* [cURL](https://curl.se/)
+* [aws-nuke](https://github.com/rebuy-de/aws-nuke) >= v2.25.0
+* [yq](https://mikefarah.gitbook.io/yq) >= v4.35.2
 
 ```shell
 cd emergency-cluster-destroy
 ./emergency-cluster-destroy.sh <aws_profile_name> <cloudflare_token>
 ```
 
-> Note: Follow the script's interactive instructions for correct execution.
+> Follow the script's interactive instructions for correct execution.
 
 ## Development
 
