@@ -23,8 +23,7 @@ variable "AWS_SECRET_ACCESS_KEY" {
   }
 }
 
-variable "ami_image_owner" {
-  default     = "288509344804"
+variable "AMI_IMAGE_OWNER" {
   description = "List of AMI owners to limit search"
   type        = string
 }
