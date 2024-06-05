@@ -1,6 +1,7 @@
 # Kodjin Mini
 
-A set of Terraform manifests with examples of provisioning a `Kodjin Mini` instance based on `Kodjin` AMI 
+A set of [Terraform](https://www.terraform.io/) manifests with examples 
+of provisioning a `Kodjin Mini` instance based on [Kodjin](https://kodjin.com) AMI 
 from AWS Marketplace.
 
 ### Quick start guide
@@ -17,7 +18,7 @@ export TF_VAR_AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
 export TF_VAR_AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
 ```
 
-> Note: `TF_VAR_*` variables are used by Terraform.
+> `TF_VAR_*` variables are used by Terraform.
 
 2. Run the following commands to initialize environment variables:
 
