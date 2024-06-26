@@ -132,7 +132,7 @@ output "rmk_acm_cert_arn" {
 }
 
 output "rmk_test_suites" {
-  description = "Test suites in cluster enabled"
+  description = "Whether test suites in cluster state enabled"
   value       = var.test_suites
 }
 
