@@ -131,6 +131,11 @@ output "rmk_acm_cert_arn" {
   value       = module.acm[0].this_acm_certificate_arn
 }
 
+output "rmk_test_suites" {
+  description = "Test suites in cluster enabled"
+  value       = var.test_suites
+}
+
 output "bastion_private_key_path" {
   description = "Path to private key for connecting to EC2 bastion instance via SSH"
   value       = var.bastion_enabled ? abspath(local_file.local_file_bastion[0].filename) : ""
