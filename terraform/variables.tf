@@ -287,3 +287,9 @@ variable "cluster_log_types" {
   type        = list(string)
   default     = []
 }
+
+variable "test_suites" {
+  description = "Enable test suites in cluster state"
+  type        = string
+  default     = "false"
+}
